@@ -1,0 +1,6 @@
+trigger = R U R'
+sexy move = {trigger} U'
+
+T Perm = {sexy move} R' F R2 U' R' U' {trigger} F'
+
+{T Perm}
