@@ -73,6 +73,7 @@ function MCNwrapper() {
             expAlg = expAlg.replace(new RegExp(`\\((${alg})\\)(${count})`, 'g'), (_, moves, amount) => {
                 return Array.from({ length: amount }, () => moves).join(' ');
             })
+            loops++
         } while (expAlg !== prev && loops < maxLoops);
         
         if (loops === maxLoops) {
