@@ -73,37 +73,42 @@ function MCNwrapper() {
         return expAlg;
     }
     function parseMCN(mcnText) {
-        const lines = mcnText.split(/\r?\n/).map(v => v.trim());
-    
-        // output values
-        const vars = {};
-        let algs = [], expAlgs;
-    
-        // parser loop
-        for (const line of lines) {
-            if (commentRegex.test(line) || line.trim().length === 0)
-                continue;
-    
-            const cleanLine = line.replace(/#.*$/, '').trim();
-    
-            if (macroDefRegex.test(cleanLine)) {
-                const match = macroDefRegex.exec(cleanLine);
-                if (match) {
-                    const groups = match.slice(1).map(v => v.trim());
+        try {
+            const lines = mcnText.split(/\r?\n/).map(v => v.trim());
         
-                    vars[groups[0]] = groups[1];
+            // output values
+            const vars = {};
+            let algs = [], expAlgs;
+        
+            // parser loop
+            for (const line of lines) {
+                if (commentRegex.test(line) || line.trim().length === 0)
+                    continue;
+        
+                const cleanLine = line.replace(/#.*$/, '').trim();
+        
+                if (macroDefRegex.test(cleanLine)) {
+                    const match = macroDefRegex.exec(cleanLine);
+                    if (match) {
+                        const groups = match.slice(1).map(v => v.trim());
+            
+                        vars[groups[0]] = groups[1];
+                    }
+                    continue;
                 }
-                continue;
+                if (algRegex.test(cleanLine)) {
+                    algs.push(cleanLine);
+                }
             }
-            if (algRegex.test(cleanLine)) {
-                algs.push(cleanLine);
+            expAlgs = algs.map(alg => expandAlg(alg, vars));
+            return {
+                vars,
+                algs,
+                expAlgs
             }
-        }
-        expAlgs = algs.map(alg => expandAlg(alg, vars));
-        return {
-            vars,
-            algs,
-            expAlgs
+        } catch (err) {
+            error(err?.message ?? err);
+            throw err;
         }
     }
     async function parseMCNFile(relPath) {
@@ -126,7 +131,8 @@ function MCNwrapper() {
         moveRegex,
         algRegex,
         macroRegex,
-        parseMCNFile
+        parseMCNFile,
+        version: '1.0.0'
     };
 }
 

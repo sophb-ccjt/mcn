@@ -1,0 +1,23 @@
+{
+    "private": true,
+    "name": "@sophb-ccjt/mcn",
+    "description": "JS utility script for Rubik's Cube Algorithms and Cube Theory with the help of macros",
+    "version": "1.0.0",
+    "homepage": "https://github.com/sophb-ccjt/mcn",
+    "license": "MIT",
+    "main": "./src/mcn.js",
+    "browser": "./src/mcn.js",
+    "bugs": {
+        "url": "https://github.com/sophb-ccjt/mcn/issues",
+        "email": "sophb.code@proton.me"
+    },
+    "author": {
+        "name": "Sophia Blair",
+        "url": "https://github.com/sophb-ccjt",
+        "email": "sophb.ccjt@proton.me"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sophb-ccjt/mcn.git"
+    }
+}
