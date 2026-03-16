@@ -67,15 +67,18 @@ function MCNwrapper() {
             loops++
         } while (expAlg !== prev && loops < maxLoops);
 
+        // expand repeats
+        do {
+            prev = expAlg
+            expAlg = expAlg.replace(new RegExp(`\\((${alg})\\)(${count})`, 'g'), (_, moves, amount) => {
+                return Array.from({ length: amount }, () => moves).join(' ');
+            })
+        } while (expAlg !== prev && loops < maxLoops);
+        
         if (loops === maxLoops) {
             error(`Macro expansion limit reached (${maxLoops} loops). Possible recursion?`)
             return algstr;
         }
-
-        // expand repeats
-        expAlg = expAlg.replace(new RegExp(`\\((${alg})\\)(${count})`, 'g'), (_, moves, amount) => {
-            return Array.from({ length: amount }, () => moves).join(' ');
-        })
         return expAlg;
     }
     function parse(mcnText = '') {
@@ -138,7 +141,7 @@ function MCNwrapper() {
         algRegex,
         macroRegex,
         parseFile,
-        version: '1.1.0'
+        version: '1.1.1'
     };
 }
 
