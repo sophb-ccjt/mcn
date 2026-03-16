@@ -72,7 +72,7 @@ function MCNwrapper() {
         }
         return expAlg;
     }
-    function parseMCN(mcnText) {
+    function parseMCN(mcnText = '') {
         try {
             const lines = mcnText.split(/\r?\n/).map(v => v.trim());
         
