@@ -72,7 +72,7 @@ function MCNwrapper() {
         }
         return expAlg;
     }
-    function parseMCN(mcnText = '') {
+    function parse(mcnText = '') {
         try {
             const lines = mcnText.split(/\r?\n/).map(v => v.trim());
         
@@ -115,7 +115,7 @@ function MCNwrapper() {
         if (typeof require !== 'undefined') {
             const fs = require('fs').promises;
             return fs.readFile(relPath, 'utf8')
-                .then(parseMCN)
+                .then(parse)
                 .catch(err => {
                     error('Error reading file:', err);
                 });
@@ -125,7 +125,7 @@ function MCNwrapper() {
     }
     
     return {
-        parseMCN,
+        parse,
         expandAlg,
         getVars,
         moveRegex,

@@ -28,7 +28,7 @@ B = {A} U2 {A}'
 {A} U {B} 
 `;
 
-const parsed = MCN.parseMCN(mcnText);
+const parsed = MCN.parse(mcnText);
 
 console.log(parsed.vars);
 // { A: "R U R' U'", B: "R U R' U' U2 R U R' U'" }
@@ -51,7 +51,7 @@ B = {A} U2 {A}'
 {A} U {B} 
 `;
 
-const parsed = MCN.parseMCN(mcnText);
+const parsed = MCN.parse(mcnText);
 
 console.log(parsed.vars);
 // { A: 'R U R\' U\'', B: 'R U R\' U\' U2 R U R\' U\'' }
