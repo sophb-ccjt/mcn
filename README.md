@@ -2,6 +2,8 @@
 
 MCN is a JavaScript library for defining, parsing, and expanding Rubik's Cube algorithms using **macros**. It allows you to define reusable algorithm chunks, nest them, and expand them into full sequences.
 
+You can try MCN live here: https://mcn-playground.vercel.app/
+
 ---
 
 ## Installation
