@@ -58,7 +58,7 @@ function MCNwrapper() {
             expAlg = expAlg.replace(cloneRegex(macroCapRegex), (_, name) => {
                 name = name.trim();
                 if (vars[name] != null) {
-                    return vars[name];
+                    return `(${vars[name]})`;
                 } else {
                     warn(`Undefined macro "${name}" detected while expanding.`);
                     return noDef;
@@ -142,7 +142,7 @@ function MCNwrapper() {
         algRegex,
         macroRegex,
         parseFile,
-        version: '1.1.1'
+        version: '1.1.2'
     };
 }
 
